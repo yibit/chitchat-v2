@@ -1,6 +1,6 @@
 # 人民币国际化卡在哪里
 
-[2022-4-5]{.hline align=right}
+[2022-4-5]{.hline align=right bold=true}
 
 金融主体性基建、金融主权与解放。
 

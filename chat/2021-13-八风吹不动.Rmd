@@ -1,6 +1,6 @@
 # 八风吹不动
 
-[2021-7-4]{.hline align=right}
+[2021-7-4]{.hline align=right bold=true}
 
 核心关注，就在家里。
 

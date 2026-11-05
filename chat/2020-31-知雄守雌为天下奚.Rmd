@@ -1,6 +1,6 @@
 # 知雄守雌为天下奚
 
-[2020-7-6]{.hline align=right}
+[2020-7-6]{.hline align=right bold=true}
 
 《老子》第二十八章：“知其雄，守其雌，为天下奚。”英译知雄守雌为：Possessing strength, but retaining gentleness。颇为到位。此处奚，常被后人写成谿或溪。我以为，老子说的就是奚。奚，为役使之意。为天下奚的含义，就是为人民服务。此句话的意思是，可以称王，而宁做仆，为人民服务。
 

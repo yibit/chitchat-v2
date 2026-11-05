@@ -1,6 +1,6 @@
 # 静候另一只靴子
 
-[2008-3-13]{.hline align=right}
+[2008-3-13]{.hline align=right bold=true}
 
 一
 

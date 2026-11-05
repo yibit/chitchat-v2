@@ -1,6 +1,6 @@
 # 曹操的用人思路
 
-[2014-12-30]{.hline align=right}
+[2014-12-30]{.hline align=right bold=true}
 
 用人，就是选择治国路线。
 

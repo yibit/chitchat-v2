@@ -1,6 +1,6 @@
 # 素颜以对
 
-[2010-4-1]{.hline align=right}
+[2010-4-1]{.hline align=right bold=true}
 
 月下观美人，马上看英雄。
 

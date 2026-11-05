@@ -1,6 +1,6 @@
 # 内循环的必要条件
 
-[2020-8-1]{.hline align=right}
+[2020-8-1]{.hline align=right bold=true}
 
 内循环不是闭关锁国，而是发掘内需潜力，要建立生产与消费的再平衡。
 

@@ -1,6 +1,6 @@
 # 甄别左翼
 
-[2019-12-30]{.hline align=right}
+[2019-12-30]{.hline align=right bold=true}
 
 甄别左翼的唯一标准：直接税，直接税，直接税。
 

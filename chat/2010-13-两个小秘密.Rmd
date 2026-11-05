@@ -1,6 +1,6 @@
 # 两个小秘密
 
-[2010-3-13]{.hline align=right}
+[2010-3-13]{.hline align=right bold=true}
 
 揭示两个小秘密。其实，这不是秘密。这是中国人忽略的公开事物。
 

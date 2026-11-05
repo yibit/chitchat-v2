@@ -1,6 +1,6 @@
 # 两点异议
 
-[2019-8-28]{.hline align=right}
+[2019-8-28]{.hline align=right bold=true}
 
 关于中国经济发展战略，存在一些争议。其中，两点最具代表性。
 

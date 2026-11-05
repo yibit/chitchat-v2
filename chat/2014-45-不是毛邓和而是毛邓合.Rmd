@@ -1,6 +1,6 @@
 # 不是毛邓和而是毛邓合
 
-[2014-8-11]{.hline align=right}
+[2014-8-11]{.hline align=right bold=true}
 
 极端不好，所谓过犹不及。
 

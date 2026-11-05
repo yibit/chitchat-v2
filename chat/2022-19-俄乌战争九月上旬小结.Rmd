@@ -1,6 +1,6 @@
 # 俄乌战争九月上旬小结
 
-[2022-09-12]{.hline align=right}
+[2022-09-12]{.hline align=right bold=true}
 
 俄乌战争进入中段，美国已经深度介入此次战争。
 

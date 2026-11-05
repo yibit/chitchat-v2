@@ -1,6 +1,6 @@
 # 次级岛主
 
-[2012-10-13]{.hline align=right}
+[2012-10-13]{.hline align=right bold=true}
 
 不明白央视的意思。
 

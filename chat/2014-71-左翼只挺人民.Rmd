@@ -1,6 +1,6 @@
 # 左翼只挺人民
 
-[2014-12-31]{.hline align=right}
+[2014-12-31]{.hline align=right bold=true}
 
 左翼如果要进化为共和国的迷走神经，左翼就不能成为机构或个人的附庸。
 

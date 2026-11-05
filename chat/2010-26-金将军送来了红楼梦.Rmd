@@ -1,6 +1,6 @@
 # 金将军送来了红楼梦
 
-[2010-5-29]{.hline align=right}
+[2010-5-29]{.hline align=right bold=true}
 
 我们对金氏父子有多少了解呢？
 

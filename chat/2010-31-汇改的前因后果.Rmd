@@ -1,6 +1,6 @@
 # 汇改的前因后果
 
-[2010-7-1]{.hline align=right}
+[2010-7-1]{.hline align=right bold=true}
 
 今天的汇率改革（以下简称汇改），一言以蔽之，去固定联系汇率。
 

@@ -1,6 +1,6 @@
 # 恐怖的老二
 
-[2010-5-3]{.hline align=right}
+[2010-5-3]{.hline align=right bold=true}
 
 近年来，外汇和商品市场异常波动。波动的原因已经不仅仅是金融机构的操作。
 

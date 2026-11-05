@@ -1,6 +1,6 @@
 # 虚伪的个税起征点
 
-[2011-6-16]{.hline align=right}
+[2011-6-16]{.hline align=right bold=true}
 
 税政是哲学，它关乎财富在时间和空间中合理的存在与流动。
 

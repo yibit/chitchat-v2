@@ -1,6 +1,6 @@
 # 必须立法严惩投毒者
 
-[2022-3-31]{.hline align=right}
+[2022-3-31]{.hline align=right bold=true}
 
 请立法惩戒散播病毒者
 

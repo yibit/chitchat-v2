@@ -1,6 +1,6 @@
 # 说说中国右翼
 
-[2021-2-26]{.hline align=right}
+[2021-2-26]{.hline align=right bold=true}
 
 中美之争，本质上是中国左右翼经济主权之争。
 

@@ -1,6 +1,6 @@
 # 美欧的再工业化与我国的去工业化
 
-[2014-11-11]{.hline align=right}
+[2014-11-11]{.hline align=right bold=true}
 
 我们不能忘记一个真理：劳动创造价值。
 

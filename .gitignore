@@ -1,0 +1,33 @@
+.DS_Store
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+# python
+__pycache__
+
+# book
+_book
+_bookdown_files
+libs
+packages.bib
+chat.*
+*.doc*
+*.aux
+*.idx
+*.knit.md
+*.out
+*.toc
+*.pdf
+*.epub
+*.log
+*.txt
+*.bbl
+*.blg
+*.ilg
+*.ind
+*.lof
+*.lot
+*~

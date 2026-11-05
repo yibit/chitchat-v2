@@ -1,6 +1,6 @@
 # 普京的草船借箭
 
-[2024-1-15]{.hline align=right}
+[2024-1-15]{.hline align=right bold=true}
 
 俄乌战争，全世界的关注点在军事。而普京，很少谈军事，却反复在谈经济。
 

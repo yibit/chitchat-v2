@@ -1,6 +1,6 @@
 # 拐卖
 
-[2012-9-20]{.hline align=right}
+[2012-9-20]{.hline align=right bold=true}
 
 我无法忘记在深圳街头伏地乞讨的儿童，我总是想起他们恐惧而又凄楚的眼神。
 

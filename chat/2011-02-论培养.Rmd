@@ -1,6 +1,6 @@
 # 论培养
 
-[2011-1-7]{.hline align=right}
+[2011-1-7]{.hline align=right bold=true}
 
 栋梁出于深山。天生天养。何须培养。
 

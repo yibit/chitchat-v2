@@ -1,6 +1,6 @@
 # 直接税救中国
 
-[2020-4-29]{.hline align=right}
+[2020-4-29]{.hline align=right bold=true}
 
 我国经济在进入危险的清算过程。
 

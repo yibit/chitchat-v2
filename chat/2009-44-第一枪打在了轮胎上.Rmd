@@ -1,6 +1,6 @@
 # 第一枪打在了轮胎上
 
-[2009-9-13]{.hline align=right}
+[2009-9-13]{.hline align=right bold=true}
 
 贸易战终于开打了。
 

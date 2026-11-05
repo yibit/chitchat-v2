@@ -1,0 +1,33 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c",
+        "*.sh": "shellscript",
+        "*.lua": "lua",
+        "*.go": "go",
+        "*Rmd": "markdown"
+    },
+    "files.encoding": "utf8",
+    "files.exclude": {
+        "**/.git": true,
+        "**/*book*_files": true,
+        "**/*book/*_files": true,
+        "**/*book/*html": true,
+        "**/*book/images": true,
+        "**/*book/css": true,
+        "**/*book/*.txt": true,
+        "**/*book/*.json": true,
+        "**/.DS_Store": true,
+        "**/.Rproj.user": true,
+        "**/libs": true,
+        "**/packages.bib": true,
+        "**/.RData": true,
+        "**/.Rhistory": true,
+        "**/.Ruserdata": true,
+        "**/*.log": true,
+        "**/*.gz": true,
+        "**/*.tar": true,
+        "**/__pycache__": true,
+    },
+    "r.lsp.promptToInstall": false,
+}

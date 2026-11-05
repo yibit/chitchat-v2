@@ -1,6 +1,6 @@
 # 难在立雅
 
-[2010-8-29]{.hline align=right}
+[2010-8-29]{.hline align=right bold=true}
 
 反尽三俗，未必见雅。
 

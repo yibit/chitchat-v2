@@ -1,6 +1,6 @@
 # 说魅
 
-[2020-1-24]{.hline align=right}
+[2020-1-24]{.hline align=right bold=true}
 
 按：此文就算是我的新春祝词吧！
 

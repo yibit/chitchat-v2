@@ -1,6 +1,6 @@
 # 一冰融天下寒
 
-[2019-4-28]{.hline align=right}
+[2019-4-28]{.hline align=right bold=true}
 
 冰冰复出，合法、合情、合理。小崔沉寂，无法、无情、无理。
 

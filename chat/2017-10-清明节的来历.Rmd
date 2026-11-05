@@ -1,6 +1,6 @@
 # 清明节的来历
 
-[2017-4-2]{.hline align=right}
+[2017-4-2]{.hline align=right bold=true}
 
 马上清明了，很多人可能要回家扫墓，但是清明节的来历我们很多人是不清楚的。
 

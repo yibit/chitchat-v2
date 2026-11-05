@@ -1,6 +1,6 @@
 # 美的好凄凉
 
-[2009-1-6]{.hline align=right}
+[2009-1-6]{.hline align=right bold=true}
 
 章子怡艳照门事件令人唏嘘。一个娇美的灵魂死在了浪漫的沙滩上。
 

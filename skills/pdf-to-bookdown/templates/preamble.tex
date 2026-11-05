@@ -1,0 +1,27 @@
+% latex/preamble.tex —— 本项目的 PDF 定制。
+% 通用排版功能来自共享包 cnbook（副本在 latex/cnbook/，由
+% make sync-cnbook 同步，勿直接编辑）。本文件只留项目特有定制，
+% 加载顺序在 cnbook 各件之后。
+
+% 链接转脚注（纸质书惯例：正文显示文字，URL 放入脚注）
+\let\oldhref\href
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+
+% 中文字体显式指定：正文用 Songti SC Light，粗体配 Songti SC Bold，
+% 跨机器一致；无宋体的环境回退思源宋体，再退宋体 Regular + 合成粗体。
+\IfFontExistsTF{Songti SC Light}{%
+  \setCJKmainfont[BoldFont=Songti SC Bold, ItalicFont=Kaiti SC]{Songti SC Light}%
+}{%
+  \IfFontExistsTF{Noto Serif CJK SC}{%
+    \setCJKmainfont[Scale=1.02, BoldFont=Noto Serif CJK SC Bold]{Noto Serif CJK SC}%
+  }{%
+    \IfFontExistsTF{Songti SC Regular}{%
+      \setCJKmainfont[AutoFakeBold=3, ItalicFont=Kaiti SC]{Songti SC Regular}%
+    }{}%
+  }%
+}
+
+% 制表符 ─（U+2500）等符号划入 CJK 类，交回中文字体渲染
+\xeCJKDeclareCharClass{CJK}{"25A1, "2500, "2015, "251C, "041F}
+
+\frontmatter

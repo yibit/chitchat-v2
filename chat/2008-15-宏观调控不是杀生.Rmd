@@ -1,6 +1,6 @@
 # 宏观调控不是杀生
 
-[2008-3-4]{.hline align=right}
+[2008-3-4]{.hline align=right bold=true}
 
 简单地说，不是工具问题，是使用工具的人有问题。一些人的大脑出了问题！
 

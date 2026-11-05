@@ -1,6 +1,6 @@
 # 去恶知
 
-[2019-1-29]{.hline align=right}
+[2019-1-29]{.hline align=right bold=true}
 
 本不想讨论王阳明，但不忍孩子们被骗，就写几个字。
 

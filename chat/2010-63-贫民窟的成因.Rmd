@@ -1,6 +1,6 @@
 # 贫民窟的成因
 
-[2010-12-6]{.hline align=right}
+[2010-12-6]{.hline align=right bold=true}
 
 笔者真诚地希望，有关方面去深入考察一下南亚和拉美的贫民窟。
 

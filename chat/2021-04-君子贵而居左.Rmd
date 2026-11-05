@@ -1,6 +1,6 @@
 # 君子贵而居左
 
-[2021-1-28]{.hline align=right}
+[2021-1-28]{.hline align=right bold=true}
 
 君子贵而居左，则必然大国崛起。
 

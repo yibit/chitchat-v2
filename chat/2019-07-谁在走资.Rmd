@@ -1,6 +1,6 @@
 # 谁在走资
 
-[2019-5-21]{.hline align=right}
+[2019-5-21]{.hline align=right bold=true}
 
 毛衣战，目的是金融战。
 

@@ -1,6 +1,6 @@
 # 必须完成共和国第三次伟大转折
 
-[2019-10-1]{.hline align=right}
+[2019-10-1]{.hline align=right bold=true}
 
 建国七十周年，共和国经历了两次伟大转折。
 

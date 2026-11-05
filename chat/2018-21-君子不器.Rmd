@@ -1,6 +1,6 @@
 # 君子不器
 
-[2018-9-29]{.hline align=right}
+[2018-9-29]{.hline align=right bold=true}
 
 那一年，考上大学，辞别恩师。恩师送了四个字：君子不器。
 

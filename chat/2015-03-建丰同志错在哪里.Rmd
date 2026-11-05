@@ -1,6 +1,6 @@
 # 建丰同志错在哪里
 
-[2015-1-14]{.hline align=right}
+[2015-1-14]{.hline align=right bold=true}
 
 忠诚于人民，还是忠诚于个人，这是个生死攸关的路线问题。
 

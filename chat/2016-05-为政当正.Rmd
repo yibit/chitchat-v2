@@ -1,6 +1,6 @@
 # 为政当正
 
-[2016-3-8]{.hline align=right}
+[2016-3-8]{.hline align=right bold=true}
 
 政，从正从攴。意思是，鞭策以使之规矩。政治就是通过暴力建立起正规秩序。秩序就是我们所说的制度和政策。英文：system；institution。
 

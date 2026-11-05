@@ -1,6 +1,6 @@
 # 不装是爷
 
-[2010-2-21]{.hline align=right}
+[2010-2-21]{.hline align=right bold=true}
 
 这是一个浮华的时代。
 

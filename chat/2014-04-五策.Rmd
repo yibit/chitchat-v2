@@ -1,6 +1,6 @@
 # 五策
 
-[2014-2-4]{.hline align=right}
+[2014-2-4]{.hline align=right bold=true}
 
 上上策：超越左右，平衡左右，对内修齐治平，对外不断扩张。
 

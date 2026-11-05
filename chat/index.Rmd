@@ -3,6 +3,7 @@ title: "卢麒元文集"
 author: "卢麒元"
 date: "`r Sys.Date()`"
 documentclass: ctexbook
+bibliography: [packages.bib]
 fontsize: 12pt
 indent: true
 linestretch: 1.5
@@ -32,4 +33,4 @@ cover-image: images/cover.png
 
 文集有序，人生无序。耕读总是好的，见自己，见天地，见众生。无论你从事什么，要无愧于天地，要无愧于众生，做一个行者。未来可期，待看朋友们成长。
 
-[卢麒元　2020 年 3 月 13 日]{.hline align=right}
+[卢麒元　2020 年 3 月 13 日]{.hline align=right bold=true}

@@ -1,0 +1,22 @@
+--- 
+title: "@@TITLE@@"
+author: "@@AUTHOR@@"
+date: "`r Sys.Date()`"
+documentclass: ctexbook
+bibliography: [packages.bib]
+fontsize: 12pt
+indent: true
+linestretch: 1.5
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+geometry: [b5paper, tmargin=2.0cm, bmargin=2.0cm, lmargin=2.0cm, rmargin=1.5cm]
+site: bookdown::bookdown_site
+description: "@@TITLE@@"
+cover-image: images/cover.png
+---
+
+# 序言
+
+TODO：在此撰写序言（源 PDF 若有前言页，可手工整理到这里）。

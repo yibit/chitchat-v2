@@ -1,6 +1,6 @@
 # 闲话调研
 
-[2009-4-21]{.hline align=right}
+[2009-4-21]{.hline align=right bold=true}
 
 国情民意不能上达，用调研的方法或许有效。
 

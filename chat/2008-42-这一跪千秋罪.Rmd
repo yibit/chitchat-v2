@@ -1,6 +1,6 @@
 # 这一跪千秋罪
 
-[2008-6-5]{.hline align=right}
+[2008-6-5]{.hline align=right bold=true}
 
 千跪万跪你别跪，
 

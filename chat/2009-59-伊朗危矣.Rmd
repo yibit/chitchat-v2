@@ -1,6 +1,6 @@
 # 伊朗危矣
 
-[2009-12-2]{.hline align=right}
+[2009-12-2]{.hline align=right bold=true}
 
 奥巴马增兵阿富汗的计划另有玄机。
 

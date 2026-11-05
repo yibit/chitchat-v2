@@ -1,6 +1,6 @@
 # 不辖两部无以治天下
 
-[2018-2-23]{.hline align=right}
+[2018-2-23]{.hline align=right bold=true}
 
 吏部出道德，户部出公平。
 

@@ -1,6 +1,6 @@
 # 爱
 
-[2006-8-14]{.hline align=right}
+[2006-8-14]{.hline align=right bold=true}
 
 中国文字是象形文字。在描述形态时，常常蕴含了深邃的寓意。
 

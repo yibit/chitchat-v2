@@ -1,6 +1,6 @@
 # 乌合之众不配为人民
 
-[2020-3-29]{.hline align=right}
+[2020-3-29]{.hline align=right bold=true}
 
 爱，一旦泛滥，就是自戕。
 

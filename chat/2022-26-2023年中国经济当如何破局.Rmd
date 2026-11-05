@@ -1,6 +1,6 @@
-# 2023年中国经济当如何破局
+# 2023 年中国经济当如何破局
 
-[2022-12-9]{.hline align=right}
+[2022-12-9]{.hline align=right bold=true}
 
 国有国储才能跨越周期
 
