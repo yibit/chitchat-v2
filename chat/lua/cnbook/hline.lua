@@ -5,11 +5,13 @@
 --    一个段落里只写一个带 .hline 类的 bracketed span 时，整行按属性渲染：
 --
 --      [卢麒元 2024年12月26日]{.hline align=right color=#888888}
+--      [2001-12-25]{.hline align=right bold=true}
 --
 --    属性：
 --      align  left | center | right（左顶格 / 居中 / 右顶末字；默认 center）
 --      color  #RRGGBB 或常用颜色名（xcolor/CSS 交集，如 gray、Maroon、red）；
 --             缺省不着色，继承正文颜色
+--      bold   true 加粗（缺省不加粗）
 --
 -- 2) 行内 .c —— 原地着色/加粗（正文里夹杂的古文原文等），不改版式位置：
 --
@@ -115,9 +117,11 @@ function Para(el)
     align = 'center'
   end
   local color = check_color(span.attributes['color'])
+  local bold = truthy(span.attributes['bold'])
 
   if FORMAT == 'latex' then
     local inner = inlines_to_latex(span.content)
+    if bold then inner = '\\textbf{' .. inner .. '}' end
     if color then
       inner = '\\textcolor' .. latex_color_cmd(color) .. '{' .. inner .. '}'
     end
@@ -129,6 +133,7 @@ function Para(el)
   -- HTML / EPUB：样式内联，EPUB 阅读器同样生效
   local style = 'text-align:' .. align
   if color then style = style .. ';color:' .. color end
+  if bold then style = style .. ';font-weight:bold' end
   return pandoc.Div({ pandoc.Para(span.content) },
     pandoc.Attr('', { 'hline' }, { style = style }))
 end
