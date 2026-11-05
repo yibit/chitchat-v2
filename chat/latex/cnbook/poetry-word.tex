@@ -98,6 +98,10 @@
 % （左对齐段落首行缩进 2em、续行顶格的自然行为）
 \newcommand{\verseanno}[1]{{\normalsize #1}}
 
+% 诗节空行：诗体 Div 源码内的空行（分节）保留为一行空白，
+% 高度为当前诗体字号的一整行（poetry-word.lua 的 split_verse_lines）
+\newcommand{\verseblank}{{\mbox{}\par}}
+
 % 诗行排版（poetry/riddle 的正文行）：从本诗块的统一左缩进
 % \verseblockindent 起排（左对齐、右端自然折行，不两端对齐——
 % 防止拉伸诗句）；批注（可为空）同一行紧跟正文、正常字号、

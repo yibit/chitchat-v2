@@ -139,6 +139,20 @@
   margin: 0.5em 0;
 }
 
+/* 诗节空行：诗体 Div 源码内的空行（分节）渲染为一行空白，
+ * 高度与一行诗行相当（line-height × 字号） */
+.poetry .stanza-break,
+.word .stanza-break,
+.riddle .stanza-break {
+  height: 2.4em;
+}
+
+.poetry.in-note .stanza-break,
+.word.in-note .stanza-break,
+.riddle.in-note .stanza-break {
+  height: 2em;
+}
+
 /* 诗行内批注：同一行紧跟正文，不随诗体大字号 */
 .poetry .verse-anno,
 .word .verse-anno,

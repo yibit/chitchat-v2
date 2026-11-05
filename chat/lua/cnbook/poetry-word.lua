@@ -53,7 +53,10 @@
 --
 -- 正文行的宽松写法（poetry / word 通用）：
 -- * 行之间可以不空行：pandoc 会把多行合并为一个段落（软换行），
---   滤镜按换行拆成独立的行，与空行分隔的写法效果相同；
+--   滤镜按换行拆成独立的行；
+-- * 行之间的空行表示分节（现代诗的章节、长诗分段）：渲染为
+--   一行空白（LaTeX 端 \verseblank，HTML 端 .stanza-break），
+--   不再被吃掉；代码块写法内的空行同样按分节处理；
 -- * 行首可以带空格或制表符：1–3 个空格 pandoc 会自动忽略；
 --   制表符/4 个以上空格会被 pandoc 解析成代码块，滤镜把它按行
 --   拆回普通文本（行内的 .ruby 等标记会重新解析，不受影响）；
@@ -113,20 +116,41 @@ end
 
 -- 规范化诗体 Div 的正文行，返回新的块列表：
 -- * Para/Plain 内的软换行/硬换行（行间未空行的写法）拆成独立段落；
+-- * 源块之间（空行分隔）插入诗节空行哨兵，渲染为一行空白；
 -- * CodeBlock（行首制表符/4 个以上空格的写法）按行拆回普通段落，
---   并去掉行首空白；
--- * 其他块（如已有的空行分隔段落结构）原样保留。
+--   并去掉行首空白；代码块内的空行同样转为诗节空行；
+-- * 其他块（如嵌套 Div）原样保留。
+
+-- 诗节空行哨兵：专用格式的 RawBlock（writers 不认识该格式会被丢弃，
+-- 但渲染路径在 split_verse_anno 里就识别并替换掉了，不会到达 writer）
+local STANZA_FORMAT = 'poetry-stanza-break'
+local function new_stanza_break()
+  return pandoc.RawBlock(STANZA_FORMAT, '')
+end
+local function is_stanza_break(block)
+  return block.t == 'RawBlock' and block.format == STANZA_FORMAT
+end
+
 local function split_verse_lines(content)
   local out = {}
+  -- 源块之间的空行 = 诗节空行（已在末尾或连续多个时不重复插入）
+  local function stanza_break()
+    if #out > 0 and not is_stanza_break(out[#out]) then
+      table.insert(out, new_stanza_break())
+    end
+  end
   for _, block in ipairs(content) do
     if block.t == 'CodeBlock' then
       for line in (block.text .. '\n'):gmatch('(.-)\n') do
         local t = line:gsub('^[ \t]+', ''):gsub('[ \t]+$', '')
-        if t ~= '' then
+        if t == '' then
+          stanza_break()
+        else
           table.insert(out, pandoc.Para(parse_verse_line(t)))
         end
       end
     elseif block.t == 'Para' or block.t == 'Plain' then
+      stanza_break()
       local cur = {}
       local function flush()
         if #cur > 0 then
@@ -143,8 +167,13 @@ local function split_verse_lines(content)
       end
       flush()
     else
+      stanza_break()
       table.insert(out, block)
     end
+  end
+  -- 末尾的分节哨兵没有意义（闭 fence 前的空行）
+  while #out > 0 and is_stanza_break(out[#out]) do
+    table.remove(out)
   end
   return out
 end
@@ -165,7 +194,10 @@ end
 local function split_verse_anno(content)
   local items = {}
   for _, block in ipairs(content) do
-    if block.t == 'Para' or block.t == 'Plain' then
+    if is_stanza_break(block) then
+      -- 诗节空行（源块之间的空行）
+      table.insert(items, { kind = 'stanza' })
+    elseif block.t == 'Para' or block.t == 'Plain' then
       local inls = block.content
       -- 从行尾向前收集批注（允许多条，之间可带空格）
       local anno_rev = {}
@@ -415,6 +447,9 @@ local function render_poetry_like(el, cls, latex_env, title_cmd, author_cmd, dat
           table.insert(inls, pandoc.RawInline('latex', '}'))
         end
         table.insert(result, pandoc.Para(inls))
+      elseif item.kind == 'stanza' then
+        -- 诗节空行：源码 Div 内的空行保留为一行空白
+        table.insert(result, pandoc.RawBlock('latex', '\\verseblank'))
       else
         table.insert(result, item.block)
       end
@@ -514,6 +549,10 @@ local function render_poetry_like(el, cls, latex_env, title_cmd, author_cmd, dat
                                          pandoc.Attr('', { 'verse-anno' })))
         end
         table.insert(line_blocks, pandoc.Para(inls))
+      elseif item.kind == 'stanza' then
+        -- 诗节空行：一行空白，高度由 CSS 控制
+        table.insert(line_blocks,
+                     pandoc.Div({}, pandoc.Attr('', { 'stanza-break' })))
       else
         table.insert(line_blocks, item.block)
       end
@@ -948,10 +987,17 @@ function Pandoc(doc)
       i = i + 1
     else
       -- 开 fence 所在段落内可能已带正文行（fence 与正文之间未空行的
-      -- 写法），甚至同段落内已有闭 fence（parsed.closed）
+      -- 写法），甚至同段落内已有闭 fence（parsed.closed）。
+      -- leading 各行原本在同一个源段落里（软换行相连），合并回一个
+      -- 段落，否则 split_verse_lines 会把每行当成一个诗节
       local content = {}
-      for _, line_inlines in ipairs(parsed.leading or {}) do
-        table.insert(content, pandoc.Para(line_inlines))
+      local merged = {}
+      for li, line_inlines in ipairs(parsed.leading or {}) do
+        if li > 1 then table.insert(merged, pandoc.SoftBreak()) end
+        for _, il in ipairs(line_inlines) do table.insert(merged, il) end
+      end
+      if #merged > 0 then
+        table.insert(content, pandoc.Para(merged))
       end
       local next_i = nil
       if parsed.closed then

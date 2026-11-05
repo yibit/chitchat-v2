@@ -210,6 +210,12 @@ def r_punct(line):
                 # 数字-数字之间的冒号（8:00）与逗号（1,000）保持半角
                 if ch in (':', ',') and prev_ns.isdigit() and next_ns.isdigit():
                     continue
+                # 括号成对约束：( 仅在右邻中文时转，) 仅在左邻中文时转，
+                # 避免 (PART) 附录 这类只转一边的不对称结果
+                if ch == '(' and not CJK_RE.match(next_ns):
+                    continue
+                if ch == ')' and not CJK_RE.match(prev_ns):
+                    continue
                 out[i] = PUNCT_MAP[ch]
         elif ch == '.':
             # 句号：前为中文、后不是英文字母（避开 U.S.A. 之类缩写）
@@ -246,9 +252,11 @@ def r_spacing(line, digit_space=True):
     line = re.sub('([{}]) +([A-Za-z0-9%])'.format(re.escape(FW_PUNCT)),
                   r'\1\2', line)
     # M7：全角标点（开/闭引号、括号、点号）与中文之间不留空格，
-    # 内外两侧都删（破折号 —— 前后的空格是规范允许的形式，不动）
+    # 内外两侧都删（破折号 —— 前后的空格是规范允许的形式，不动；
+    # Markdown 行首结构标记 # - * + > 后的空格是语法，不动）
     line = re.sub(r'([“‘（《【「『]) +', r'\1', line)
-    line = re.sub(r' +([“‘（《【「『”’）》】」』，。、；：？！…])', r'\1', line)
+    line = re.sub(r'(?<![\s#*+>\-—]) +([“‘（《【「『”’）》】」』，。、；：？！…])',
+                  r'\1', line)
     line = re.sub(r'([”’）》】」』，。、；：？！…]) +(?=[{}“‘（《【「『])'.format(Z),
                   r'\1', line)
     # M8：标有书名号/引号的并列成分之间不用顿号（GB/T 15834）
