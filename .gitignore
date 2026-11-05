@@ -9,6 +9,7 @@
 __pycache__
 
 # book
+*-cache.json
 _book
 _bookdown_files
 libs

@@ -155,7 +155,9 @@ make extract && make format && make pdf
 ### 4. Rmd 排版标记（继承 zhong-v2 惯例）
 
 - 日期行：`[2006-9-14]{.hline align=right}`（标题下右对齐，
-  由 `lua/cnbook/hline.lua` 处理）
+  由 `lua/cnbook/hline.lua` 处理）；`.hline` 支持
+  `align/color/bold` 属性（如 `{.hline align=right bold=true}` 整行加粗），
+  行内加粗/着色用 `.c`（如 `[文字]{.c color=Maroon bold=true}`）
 - 献词页：`latex/before_body.tex`（封面寄语"做好今天的每一件事，
   善待身边的每一个人。"）
 

@@ -213,9 +213,11 @@ def main():
         else:
             parts[-1][2].append((t, p))
 
-    # 清理旧的章节文件（保留 index.Rmd / 00-author.Rmd 等手工文件）
+    # 清理旧的生成文件（分册页 + 章节，均以“年份-”开头；
+    # 保留 index.Rmd、00-author.Rmd、8001-hmm.Rmd 等手工文件）
+    prefixes = tuple(y + '-' for y, _arts in parts)
     for f in os.listdir(OUT):
-        if re.match(r'^\d{4}-\d{2}', f):
+        if f.endswith('.Rmd') and f.startswith(prefixes):
             os.remove(os.path.join(OUT, f))
 
     nfiles, problems = 0, []
