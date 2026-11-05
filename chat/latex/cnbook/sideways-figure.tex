@@ -1,0 +1,13 @@
+% cnbook/latex/sideways-figure.tex
+% 整页横排大图的 LaTeX 配套件（滤镜 lua/sideways-figure.lua 依赖本文件）。
+% 用法（书稿 markdown，图片须独占一段）：
+%   ![图题](images/xx.png){.sideways}
+\usepackage{rotating}
+
+% rotating 的 sidewaysfigure 环境内部会把 \textwidth/\textheight 对调，
+% 环境内无法再用 \textwidth 表达“真实页面版心宽度”。此处（geometry 生效
+% 之后、环境之外）先把真实值存下来，供滤镜生成的 \includegraphics 把
+% “图高 + 图题”一起限制在版心宽度内（高度上限 0.90\pgsidetextwidth，
+% 余量留给图题一行）。
+\newlength{\pgsidetextwidth}
+\setlength{\pgsidetextwidth}{\textwidth}

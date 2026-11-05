@@ -1,0 +1,20 @@
+% cnbook/latex/ruby.tex
+% 拼音注音（ruby/furigana 风格），供 lua/ruby.lua 使用。
+\makeatletter
+% 在汉字上方加注拼音。
+% 支持单字注音，也支持多字词组注音：拼音会居中置于整组汉字上方。
+\definecolor{poetrygray}{rgb}{0.5,0.5,0.5}
+\newcommand{\ruby}[2]{%
+  \leavevmode
+  \begingroup
+  \setbox0=\hbox{#1}%
+  \setbox1=\hbox{\textcolor{poetrygray}{\fontsize{7}{8}\selectfont #2}}%
+  \ifdim\wd0>\wd1
+    \setbox1=\hbox to \wd0{\hss\copy1\hss}%
+  \else
+    \setbox0=\hbox to \wd1{\hss\copy0\hss}%
+  \fi
+  \vbox{\offinterlineskip\copy1\kern.25ex\copy0}%
+  \endgroup
+}
+\makeatother

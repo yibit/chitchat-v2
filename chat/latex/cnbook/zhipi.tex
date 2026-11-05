@@ -1,0 +1,25 @@
+% cnbook/latex/zhipi.tex
+% 批注类型徽章（供 lua/zhipi.lua 的 Code 函数使用）：
+% #1 = RGB 颜色三元组（如 145,125,22），#2 = 单个字。
+% 规则1：白字色底。用 \fcolorbox 且边框色=底色，与规则2的色框字
+% 几何尺寸（\fboxsep + \fboxrule）完全一致，两字并排时边框一样大；
+% \fboxsep/\fboxrule 在宏内局部设置，不受 kframe 等环境的全局值影响。
+\newcommand{\zhipibg}[2]{{\setlength{\fboxsep}{1.5pt}\setlength{\fboxrule}{0.6pt}%
+  \fcolorbox[RGB]{#1}[RGB]{#1}{\textcolor{white}{\texttt{#2}}}}}
+% 规则2 第2字：色框色字（\fcolorbox 的可选色彩模型同时作用于边框与
+% 背景，背景需单独指定 [RGB]{255,255,255}）
+\newcommand{\zhipiframe}[2]{{\setlength{\fboxsep}{1.5pt}\setlength{\fboxrule}{0.6pt}%
+  \fcolorbox[RGB]{#1}[RGB]{255,255,255}{\textcolor[RGB]{#1}{\texttt{#2}}}}}
+
+% 整段批注环境（回前批语、回末总评，供 lua/zhipi.lua 的 Pandoc 函数使用）：
+% 字号大一号、加粗，上下与正文拉开段距
+\newenvironment{zhipiblock}{%
+  \par\addvspace{1.2em}\large\bfseries\noindent\ignorespaces}{\par\addvspace{1.2em}}
+
+% zhipiblock 的 \bfseries 需要批注正文字体具备粗体。批注正文走 \texttt，
+% ctex 在 macOS 下把 CJK 等宽字体设为仿宋（STFangsong），无粗体字重，
+% \bfseries 会被静默回退（编译日志有 Font shape `TU/STFangsong(0)/b/n'
+% undefined 警告），故为 CJK 等宽字体开 AutoFakeBold 伪粗体；
+% 字体自带粗体或其他平台无此字体时不受影响
+\IfFontExistsTF{STFangsong}{%
+  \setCJKmonofont[AutoFakeBold=2.5]{STFangsong}}{}

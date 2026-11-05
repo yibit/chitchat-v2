@@ -1,0 +1,183 @@
+/* cnbook/css/cnbook.css
+ * cnbook 共享排版包的 HTML/EPUB 样式：
+ * .poetry/.word 诗体排版（lua/poetry-word.lua）、ruby 拼音注音
+ * （lua/ruby.lua）、.zhipi 批注（lua/zhipi.lua，颜色为内联样式，
+ * 这里只留徽章的等宽字体兜底）。 */
+
+/* 中文古诗居中排版 */
+.poetry {
+  text-align: center;
+  margin: 1em 0;
+  line-height: 2.4;
+  font-size: 1.1em;
+}
+
+.poetry-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+/* 诗体元信息副题（title/author 中全角空格“　”之后的内容，
+   如 title="凝晖钟瑞　匾额" 的“匾额”）：小一号字 */
+.meta-sub {
+  font-size: 0.85em;
+}
+
+.poetry-author,
+.poetry-date {
+  font-size: 0.95em;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 0.3em;
+}
+
+.poetry-author:last-of-type,
+.poetry-date:last-of-type {
+  margin-bottom: 0.8em;
+}
+
+.poetry p {
+  text-indent: 0;
+  margin: 0.4em 0;
+}
+
+/* 诗块正文行容器：inline-block 收缩到最宽行、随外层居中，
+ * 各行在其中左对齐——实现“第一行居中、后续行与第一行左对齐”
+ * （按最宽行居中而非严格按第一行，行长相近的诗词效果一致） */
+.poetry-lines,
+.riddle-lines {
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+}
+
+/* 中文词（ci）左对齐排版，段前空两个中文字符 */
+.word {
+  text-align: left;
+  margin: 1em 0;
+  line-height: 2.4;
+  font-size: 1.1em;
+}
+
+.word-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+
+.word-author,
+.word-date {
+  font-size: 0.95em;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+
+.word-author:last-of-type,
+.word-date:last-of-type {
+  margin-bottom: 0.8em;
+}
+
+.word p {
+  text-indent: 2em;
+  margin: 0.4em 0;
+}
+
+/* 灯谜等谜语：谜面同 .poetry 居中；谜目（可选）右对齐、小一号 */
+.riddle {
+  text-align: center;
+  margin: 1em 0;
+  line-height: 2.4;
+  font-size: 1.1em;
+}
+
+.riddle-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.riddle-author,
+.riddle-date {
+  font-size: 0.95em;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 0.3em;
+}
+
+.riddle-author:last-of-type,
+.riddle-date:last-of-type {
+  margin-bottom: 0.8em;
+}
+
+.riddle p {
+  text-indent: 0;
+  margin: 0.4em 0;
+}
+
+.riddle-mimu {
+  text-align: right;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.riddle-mimu p {
+  text-align: right;
+  margin: 0.2em 0;
+}
+
+/* 脚注内的诗体（note 属性，Div 移入脚注后加 .in-note 类）：
+ * 字号略小、行距与前后留白收敛 */
+.poetry.in-note,
+.word.in-note,
+.riddle.in-note {
+  font-size: 0.95em;
+  line-height: 2.0;
+  margin: 0.5em 0;
+}
+
+/* 诗行内批注：同一行紧跟正文，不随诗体大字号 */
+.poetry .verse-anno,
+.word .verse-anno,
+.riddle .verse-anno {
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+
+/* 拼音注音样式（HTML5 ruby） */
+ruby {
+  ruby-align: center;
+}
+
+rt {
+  font-size: 0.55em;
+  line-height: 1.2;
+  color: #555;
+}
+
+/* 批注徽章：与 LaTeX 端 \zhipibg/\zhipiframe 的 \texttt 对应 */
+.zhipi-bg code,
+.zhipi-frame code {
+  font-family: monospace;
+}
+
+/* 整段批注（回前批语、回末总评等，lua/zhipi.lua 的 Pandoc 滤镜标记；
+   连续批注段合并为一组）：字号稍大、加粗，整组上下与正文拉开距离；
+   组内各批注段之间用与正文一致的正常段距（0.85em） */
+.zhipi-block {
+  font-size: 1.12em;
+  font-weight: bold;
+  margin: 1.4em 0;
+}
+
+.zhipi-block p {
+  margin: 0 0 0.85em;
+  text-indent: 0;
+}
+
+.zhipi-block p:last-child {
+  margin-bottom: 0;
+}

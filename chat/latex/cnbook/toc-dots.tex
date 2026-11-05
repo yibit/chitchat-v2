@@ -1,0 +1,25 @@
+% cnbook/latex/toc-dots.tex
+% 目录 / 表格目录 / 插图目录统一使用点号引线。
+% 表格目录、插图目录的条目（table/figure）与 section 级一样，默认就带点号引线；
+% 只有 chapter 级默认用 \hfil 填充、没有引线。
+% 因 TinyTeX 2022 无法直接安装 tocloft 宏包，这里直接重定义 \l@chapter：
+% 与 book 类原始定义一致，仅把标题与页码之间的 \hfil 换成点号引线（引线用正常字重）。
+\makeatletter
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak
+      {\normalfont\leaders\hbox{$\m@th\mkern\@dotsep mu\hbox{.}\mkern\@dotsep mu$}\hfill}%
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\makeatother

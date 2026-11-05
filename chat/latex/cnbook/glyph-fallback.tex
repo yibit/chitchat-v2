@@ -1,0 +1,37 @@
+% cnbook/latex/glyph-fallback.tex
+% 生僻字缺字回退机制。
+% 缺字分两类：
+% (1) 制表/符号类 BMP 字符（□ ─ ― ├ 等）：中文字体本身有这些字形，
+%     但 xeCJK 不把它们算作 CJK 字符，结果落入没有对应字形的西文字体，
+%     页面上什么都不显示。用 \xeCJKDeclareCharClass 把它们划入 CJK 类，
+%     交回中文字体渲染（字符清单是项目特定的，写在项目自己的 preamble）。
+% (2) CJK 扩展 B/C/E 区生僻字：正文字体没有字形，缺字时页面显示空方框、
+%     文本层提取为乱码。用本文件提供的 \CJKfallbackchar{码位} 把这些字
+%     指定给回退字体渲染。
+
+% 回退字体族：项目可在加载本文件前自行 \newCJKfontfamily 覆盖默认
+\ifdefined\CJKfallbackfont\else
+  \newCJKfontfamily\CJKfallbackfont{LXGW Neo ZhiSong}
+\fi
+
+% \CJKfallbackchar{23B20} —— 把该码位（十六进制，不带 U+）对应的字符
+% 设为活动字符，并用回退字体渲染。BMP 内外通用（内部用 \char 排版，
+% 不依赖字面字符，因此不会有活动字符无限自我展开的问题）。
+% 用法示例（写在项目自己的 preamble 里）：
+%   \CJKfallbackchar{23B20} % 扩展 B 区生僻字
+%   \CJKfallbackchar{30FB}  % ・（书名号内间隔号）
+%
+% \CJKfallbackcharfont{字体命令}{码位} —— 同上，但用指定的字体族渲染，
+% 用于默认回退字体（LXGW Neo ZhiSong）也没有该字形的情形。字体族由项目
+% 自己在 preamble 里 \newCJKfontfamily 声明（可带 Path 指向项目内字体
+% 文件，例如花园明朝子集）。用法示例：
+%   \newCJKfontfamily\hanaminB[Path=latex/fonts/]{HanaMinB-subset.ttf}
+%   \CJKfallbackcharfont{\hanaminB}{24AEB} % 扩展 B 区，LXGW 亦无此字
+\makeatletter
+\newcommand{\CJKfallbackcharfont}[2]{%
+  \global\catcode"#2=\active
+  \begingroup\uccode`\~="#2\relax
+  \uppercase{\endgroup\global\protected\def~}{{#1\char"#2\relax}}%
+}
+\newcommand{\CJKfallbackchar}[1]{\CJKfallbackcharfont{\CJKfallbackfont}{#1}}
+\makeatother

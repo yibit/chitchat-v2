@@ -1,0 +1,125 @@
+% cnbook/latex/poetry-word.tex
+% 中文古诗排版（poetry：第一行正文居中、后续正文行与第一行左对齐）、
+% 词左对齐排版（word）、谜语排版（riddle，谜面同 poetry），
+% 供 lua/poetry-word.lua 使用。
+
+% 诗块正文行的统一左缩进（第一行居中位置）与量宽用的临时长度
+\newlength{\verseblockindent}
+\newlength{\verseannow}
+
+% poetry 环境：前后留白、字号略大、行距宽松。
+% 正文行对齐：第一行正文居中，后续正文行与第一行左对齐——
+% 由各行的 \verseline 系列宏用 \parshape 实现（不用 center 环境：
+% 各行独立居中会使长短不一的诗行左边缘参差不齐，视觉上不对齐）。
+\newenvironment{poetry}{%
+  \par\addvspace{1em}%
+  \setlength{\verseblockindent}{0pt}%
+  \setlength{\parindent}{0pt}%
+  \large\linespread{1.8}\selectfont
+}{%
+  \par\addvspace{1em}%
+}
+
+% 诗题、作者与日期
+\newcommand{\poetrytitle}[1]{\textbf{\Large #1}}
+\newcommand{\poetryauthor}[1]{\textit{\normalsize #1}}
+\newcommand{\poetrydate}[1]{\textit{\normalsize #1}}
+
+% word（词）环境：前后留白、整体左对齐、段前空两个中文字符、字号略大、行距宽松
+% （不用 flushleft：trivlist 类环境会吞掉环境内首个段落的缩进，
+%  导致块内第一行顶格；普通分组 + \raggedright 每段都能正常缩进 2em）
+\newenvironment{word}{%
+  \par\addvspace{1em}%
+  \raggedright
+  \setlength{\parindent}{2em}%
+  \large\linespread{1.8}\selectfont
+}{%
+  \par\addvspace{1em}%
+}
+
+% 词题、作者与日期
+\newcommand{\wordtitle}[1]{\textbf{\Large #1}}
+\newcommand{\wordauthor}[1]{\textit{\normalsize #1}}
+\newcommand{\worddate}[1]{\textit{\normalsize #1}}
+
+% riddle（灯谜等谜语）环境：谜面排版同 poetry
+% （第一行正文居中、后续正文行与第一行左对齐）
+\newenvironment{riddle}{%
+  \par\addvspace{1em}%
+  \setlength{\verseblockindent}{0pt}%
+  \setlength{\parindent}{0pt}%
+  \large\linespread{1.8}\selectfont
+}{%
+  \par\addvspace{1em}%
+}
+
+% 脚注内的诗体（poetry-word.lua 的 note 属性，Div 移入脚注后改用
+% *note 环境）：字号跟随脚注（不再放大）、行距与前后留白收敛
+\newenvironment{poetrynote}{%
+  \par\addvspace{0.5em}%
+  \setlength{\verseblockindent}{0pt}%
+  \setlength{\parindent}{0pt}%
+  \linespread{1.5}\selectfont
+}{%
+  \par\addvspace{0.5em}%
+}
+\newenvironment{wordnote}{%
+  \par\addvspace{0.5em}%
+  \raggedright
+  \setlength{\parindent}{2em}%
+  \linespread{1.5}\selectfont
+}{%
+  \par\addvspace{0.5em}%
+}
+\newenvironment{riddlenote}{%
+  \par\addvspace{0.5em}%
+  \setlength{\verseblockindent}{0pt}%
+  \setlength{\parindent}{0pt}%
+  \linespread{1.5}\selectfont
+}{%
+  \par\addvspace{0.5em}%
+}
+
+% 谜题、作者与日期（同 poetry）
+\newcommand{\riddletitle}[1]{\textbf{\Large #1}}
+\newcommand{\riddleauthor}[1]{\textit{\normalsize #1}}
+\newcommand{\riddledate}[1]{\textit{\normalsize #1}}
+
+% 谜目（“打一物”之类，可选）：单独一行右对齐、小一号字。
+% 整行宽度的右对齐盒子，不受所在段落对齐设置影响。
+\newcommand{\riddlemimu}[1]{\par\nopagebreak\vspace{0.2em}{\small\makebox[\linewidth][r]{#1}\par}}
+
+% 元信息副题（title/author 中全角空格“　”之后的内容，如
+% title="凝晖钟瑞　匾额" 的“匾额”）：小一号字
+\newcommand{\metasub}[1]{{\normalsize #1}}
+
+% 诗行内批注（word 词环境用，左对齐段落内自然跟随）：
+% 同一行紧跟正文，不随诗体大字号；折行后续行顶格起排
+% （左对齐段落首行缩进 2em、续行顶格的自然行为）
+\newcommand{\verseanno}[1]{{\normalsize #1}}
+
+% 诗行排版（poetry/riddle 的正文行）：从本诗块的统一左缩进
+% \verseblockindent 起排（左对齐、右端自然折行，不两端对齐——
+% 防止拉伸诗句）；批注（可为空）同一行紧跟正文、正常字号、
+% 不参与对齐；批注折行时续行从行头顶格起排（\parshape 第二行
+% 规格为 0pt）。\parshape 等在局部组内设置，随 \par 生效、
+% 组结束即还原，不影响后续段落。
+\newcommand{\verseline}[2]{%
+  {%
+    \leftskip=0pt\relax
+    \rightskip=0pt plus 1fil\relax
+    \parshape=2 \verseblockindent \dimexpr\linewidth-\verseblockindent\relax
+      0pt \linewidth
+    #1\hspace{0.5em}{\normalsize #2}\par
+  }%
+}
+
+% 诗块第一行：量出本行正文宽度，算出统一缩进（使第一行正文居中，
+% 批注不参与），存进 \verseblockindent 供后续行共用，再照常排版。
+% 首行太长时居中缩进至少保留四个汉字的距离，不要顶到行首。
+\newcommand{\verselinefirst}[2]{%
+  \settowidth{\verseannow}{#1}%
+  \setlength{\verseblockindent}{\dimexpr(\linewidth-\verseannow)/2\relax}%
+  \ifdim\verseblockindent<4em\relax \setlength{\verseblockindent}{4em}\fi
+  \verseline{#1}{#2}%
+}

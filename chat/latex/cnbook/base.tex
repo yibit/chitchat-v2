@@ -1,0 +1,90 @@
+% cnbook/latex/base.tex
+% bookdown 中文项目（XeLaTeX + ctexbook）公共件。
+\usepackage{booktabs}
+\usepackage{longtable}
+% pandoc 为带列宽的表格生成 >{\raggedright\arraybackslash}p{…} 列，
+% \arraybackslash 由 array 宏包提供；列宽里的算术表达式由 calc 宏包提供
+\usepackage{array}
+\usepackage{calc}
+
+% xcolor 需带 usenames,dvipsnames：bookdown 模板把这两个选项传给 color
+% （\PassOptionsToPackage{usenames,dvipsnames}{color}），而 hyperref 2022
+% 不再加载 color，改由这里的 xcolor 提供 Maroon 等颜色名（目录链接色）
+\usepackage{framed}
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+
+\makeatletter
+\newenvironment{kframe}{%
+\medskip{}
+\setlength{\fboxsep}{.8em}
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\makeatletter
+\@ifundefined{Shaded}{
+}{\renewenvironment{Shaded}{\begin{kframe}}{\end{kframe}}}
+\@ifpackageloaded{fancyvrb}{%
+  % https://github.com/CTeX-org/ctex-kit/issues/331
+  \RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},formatcom=\xeCJKVerbAddon}%
+}{}
+\makeatother
+
+\usepackage{makeidx}
+\makeindex
+
+\urlstyle{tt}
+
+% PDF 书签带上章节编号：hyperref 默认把 \numberline（章节号）从书签里
+% 去掉，书签只剩标题；bookmarksnumbered 让书签与目录一样显示完整编号
+\hypersetup{bookmarksnumbered=true}
+
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+% 中文主字体与粗体：优先用思源宋体（Noto Serif CJK SC，SIL OFL 自由许可、
+% 跨平台），BoldFont 配其真 Bold 字重——思源全部字重共享同一字符集
+% （对 hong 全书用字实测：各字重均只缺 5 个扩展 B 区字，且都已在项目的
+% \CJKfallbackchar 回退清单内），不存在「粗体比正文少字」的问题。
+% Scale=1.02：思源宋体同字号下字面比宋体 SC 小、不放大则阅读显小显累，
+% 默认放大 1.02（经 A/B/C/D/E 样张对比调试；想更大可用 1.06/1.10，
+% 想笔画更饱满可换 Noto Serif CJK SC Medium）。
+% 无思源的环境回退到 macOS 宋体 + AutoFakeBold=3 合成粗体：ctex 的 macOS
+% 字体集默认 BoldFont=Songti SC Bold 与 Regular 字重差太小，__粗体__
+% （\textbf）在 PDF 里几乎看不出；注意不能用 Songti SC Black——该字重
+% 字符覆盖严重不全（hong 全书用字实测缺 136 字，如第 78 回「姽婳」，
+% 粗体标题与目录章条目里直接丢字）。都没有时保持 ctex 默认，不干预
+\IfFontExistsTF{Noto Serif CJK SC}{%
+  \IfFontExistsTF{Kaiti SC}{%
+    \setCJKmainfont[Scale=1.02, BoldFont=Noto Serif CJK SC Bold, ItalicFont=Kaiti SC]{Noto Serif CJK SC}%
+  }{%
+    \setCJKmainfont[Scale=1.02, BoldFont=Noto Serif CJK SC Bold]{Noto Serif CJK SC}%
+  }%
+}{%
+  \IfFontExistsTF{Songti SC Regular}{%
+    \setCJKmainfont[AutoFakeBold=3, ItalicFont=Kaiti SC]{Songti SC Regular}%
+  }{}%
+}
